@@ -1,0 +1,26 @@
+std={}
+while True:
+    stud_name = input("Enter the student name: ")
+    if stud_name.lower() == "done":
+        break
+    marks = input(f"Enter the marks for {stud_name} (comma separated): ").split(',')
+    marks = [int(mark) for mark in marks]
+    std[stud_name] = marks
+
+def avg_marks():
+    avg_marks_dict = {}
+    for student, marks in std.items():
+        avg = sum(marks) / len(marks)
+        avg_marks_dict[student] = avg
+    return avg_marks_dict
+def highest():
+    avg_marks_dict = avg_marks()
+    top_student = max(avg_marks_dict, key=avg_marks_dict.get)
+    top_marks = avg_marks_dict[top_student]
+    return top_student, top_marks
+average_marks = avg_marks()
+print("\n Avergae marks of all students:")
+for student,avg in average_marks.items():
+    print(f"{student}:{avg:.2f}")
+top_student, top_marks = highest()
+print(f"\nTop Performer: {top_student} with {top_marks:.2f} marks")
